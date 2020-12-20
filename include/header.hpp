@@ -31,6 +31,7 @@ using std::runtime_error;
 using std::move;
 using std::ofstream;
 using std::ios;
+using std::nullptr_t;
 using json = nlohmann::json;
 
 struct Student {
