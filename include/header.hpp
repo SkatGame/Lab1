@@ -19,7 +19,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 using std::any;
-using std::cin;
 using std::ifstream;
 using std::ostream;
 using std::stringstream;
@@ -44,7 +43,7 @@ struct Student {
   }
   static vector<Student> ParseF(const string& jsonObject);
   static vector<Student> ParseS(string jsonString);
-  static void Print(const vector<Student>& students, ostream& info);
+  static void Print(const vector<Student>& students, ostream& ss);
 
  private:
   string name;
