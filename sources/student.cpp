@@ -1,3 +1,5 @@
+//Copyright 2020 xaxaxaxa232@mail.ru
+
 #include "header.hpp"
 
 string getName(const json& object){
@@ -5,25 +7,25 @@ string getName(const json& object){
 }
 
 any getGroup(const json& object){
-  if(object.is_string())
+  if (object.is_string())
     return object.get<string>();
   else
     return object.get<int>();
 }
 
 any getAvg(const json& object){
-  if(object.is_string())
+  if (object.is_string())
     return object.get<string>();
-  else if(object.is_number_integer())
+  else if (object.is_number_integer())
     return object.get<int>();
   else
     return object.get<double>();
 }
 
 any getDebt(const json& object){
-  if(object.is_null())
+  if (object.is_null())
     return nullptr;
-  else if(object.is_string())
+  else if (object.is_string())
     return object.get<string>();
   else
     return object.get<vector<string>>();
@@ -55,7 +57,7 @@ vector<Student> Student::ParseF(const string& jsonObject){
 
   ifstream  fileJson(jsonObject);
 
-  if(!fileJson){
+  if (!fileJson){
     throw runtime_error{"File can't be open."};
   }
 
@@ -63,16 +65,16 @@ vector<Student> Student::ParseF(const string& jsonObject){
   fileJson >> youFile;
   fileJson.close();
 
-  if(!(youFile["items"].is_array())){
+  if (!(youFile["items"].is_array())){
     throw runtime_error{R"("File items is not array!)"};
   }
-  if(youFile["items"].size() != (youFile["_meta"])["count"]){
+  if (youFile["items"].size() != (youFile["_meta"])["count"]){
     throw runtime_error{R"(File items is incorrect, check _meta)"};
   }
 
   vector<Student> vectorStud;
 
-  for(const auto& student : youFile["items"]){
+  for (const auto& student : youFile["items"]){
 
     string name_ = getName(student["name"]);
     any group_ = getGroup(student["group"]);
@@ -87,16 +89,16 @@ vector<Student> Student::ParseF(const string& jsonObject){
 vector<Student> Student::ParseS(string jsonString){
   json youString = json::parse(jsonString);
 
-  if(!(youString["items"].is_array())){
+  if (!(youString["items"].is_array())){
     throw runtime_error{R"("File items is not array!)"};
   }
-  if(youString["items"].size() != (youString["_meta"])["count"]){
+  if (youString["items"].size() != (youString["_meta"])["count"]){
     throw runtime_error{R"(File items is incorrect, check _meta)"};
   }
 
   vector<Student> vectorStud;
 
-  for(const auto& student : youString["items"]){
+  for (const auto& student : youString["items"]){
 
     string name_ = getName(student["name"]);
     any group_ = getGroup(student["group"]);
@@ -112,13 +114,13 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
   vector<size_t> length (4,0);
 
   for (const auto& student : students){
-    if(student.name.length() > length[0])
+    if (student.name.length() > length[0])
     length[0] = student.name.length();
-    if(getString(student.group).length() > length[1])
+    if (getString(student.group).length() > length[1])
       length[1] = getString(student.group).length();
-    if(getString(student.avg).length() > length[2])
+    if (getString(student.avg).length() > length[2])
       length[2] = getString(student.avg).length();
-    if(getString(student.debt).length() > length[3])
+    if (getString(student.debt).length() > length[3])
       length[3] = getString(student.debt).length();
   }
 
@@ -137,7 +139,7 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
   ss << "| " << left << setw(length[3]) << "debt" << "|" << endl;
   ss << right << symbol <<endl;
 
-  for(const auto &student:students){
+  for (const auto &student:students){
     ss << "| " << left << setw(length[0]) << student.name;
     ss << "| " << left << setw(length[1]) << getString(student.group);
     ss << "| " << left << setw(length[2]) << getString(student.avg);

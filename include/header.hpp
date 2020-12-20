@@ -1,3 +1,5 @@
+//Copyright 2020 xaxaxaxa232@mail.ru
+
 #ifndef INCLUDE_HEADER_HPP_
 #define INCLUDE_HEADER_HPP_
 
@@ -33,7 +35,7 @@ using json = nlohmann::json;
 
 struct Student {
  public:
-  Student(string name_,any group_, any avg_, any debt_){
+  Student(string name_, any group_, any avg_, any debt_){
     name = move(name_);
     group = move(group_);
     avg = move(avg_);
