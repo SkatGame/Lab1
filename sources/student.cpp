@@ -36,20 +36,17 @@ string getString(any object){
     return "null";
   else if (object.type() == typeid(string))
     return any_cast<string>(object);
-  else if (object.type() == typeid(int))
-  {
+  else if (object.type() == typeid(int)) {
     stringstream convector;
     convector << any_cast<int>(object);
     return convector.str();
   }
-  else if (object.type() == typeid(double ))
-  {
+  else if (object.type() == typeid(double )) {
     stringstream convector;
     convector << any_cast<double>(object);
     return convector.str();
   }
-  else
-  {
+  else {
     stringstream convector;
     convector << any_cast<vector<string>>(object).size() << "items";
     return convector.str();
@@ -111,7 +108,7 @@ vector<Student> Student::ParseS(string jsonString){
 }
 
 void Student::Print(const vector<Student>& students, ostream& ss) {
-  vector<size_t> length (4,0);
+  vector<size_t>length (4, 0);
 
   for (const auto& student : students){
     if (student.name.length() > length[0])
@@ -148,4 +145,3 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
     ss << right << symbol <<endl;
   }
   }
-

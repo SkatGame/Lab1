@@ -59,5 +59,3 @@ any getDebt(const json& object);
 string getString(any object);
 
 #endif // INCLUDE_HEADER_HPP_
-
-
