@@ -90,7 +90,7 @@ const char table[] = R"(| name         | group | avg | debt  |
 
 TEST(Cout, Test1) {
   stringstream stest;
- Student::Print(Student::ParseS(inside), stest);
+ stest << Student::ParseS(inside);
  EXPECT_EQ(stest.str(), table);
 }
 
@@ -100,17 +100,17 @@ jFile.open("testFile.json", ios::out);
 jFile << inside;
 jFile.close();
   stringstream stest;
-  Student::Print(Student::ParseF("testFile.json"), stest);
+  stest << Student::ParseF("testFile.json");
   EXPECT_EQ(stest.str(), table);
 }
 
 TEST(Error, Test1){
-  EXPECT_THROW(Student::Print(Student::ParseS(error1), cout), runtime_error);
+  EXPECT_THROW((Student::ParseS(error1)), runtime_error);
 }
 
 
 TEST(Error, Test2){
-  EXPECT_THROW(Student::Print(Student::ParseS(error2), cout), runtime_error);
+  EXPECT_THROW((Student::ParseS(error2)), runtime_error);
 }
 
 TEST(Error, Test3) {
@@ -118,8 +118,7 @@ TEST(Error, Test3) {
   jFile.open("testFile.json", ios::out);
   jFile << error1;
   jFile.close();
-  EXPECT_THROW(Student::Print(Student::ParseF("testFile.json"),
-                              cout), runtime_error);
+  EXPECT_THROW((Student::ParseF("testFile.json")), runtime_error);
 }
 
 TEST(Error, Test4) {
@@ -127,11 +126,9 @@ TEST(Error, Test4) {
   jFile.open("testFile.json", ios::out);
   jFile << error2;
   jFile.close();
-  EXPECT_THROW(Student::Print(Student::ParseF("testFile.json"),
-                              cout), runtime_error);
+  EXPECT_THROW((Student::ParseF("testFile.json")), runtime_error);
 }
 
 TEST(Error, Test6) {
-  EXPECT_THROW(Student::Print(Student::ParseF("fail.json"),
-                              cout), runtime_error);
+  EXPECT_THROW((Student::ParseF("fail.json")), runtime_error);
 }

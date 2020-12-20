@@ -108,12 +108,11 @@ vector<Student> Student::ParseS(string jsonString){
   return vectorStud;
 }
 
-void Student::Print(const vector<Student>& students, ostream& ss) {
-  vector<size_t>length(4, 0);
+ostream &operator << (ostream& ss, const vector<Student>& students) {
+  vector<size_t> length(4, 0);
 
-  for (const auto& student : students){
-    if (student.name.length() > length[0])
-    length[0] = student.name.length();
+  for (const auto& student : students) {
+    if (student.name.length() > length[0]) length[0] = student.name.length();
     if (getString(student.group).length() > length[1])
       length[1] = getString(student.group).length();
     if (getString(student.avg).length() > length[2])
@@ -123,9 +122,9 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
   }
 
   string symbol;
-  for (size_t i : length){
+  for (size_t i : length) {
     symbol += "|-";
-    for (size_t j = 0; j < i; ++j){
+    for (size_t j = 0; j < i; ++j) {
       symbol += "-";
     }
   }
@@ -134,15 +133,17 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
   ss << "| " << left << setw(length[0]) << "name";
   ss << "| " << left << setw(length[1]) << "group";
   ss << "| " << left << setw(length[2]) << "avg";
-  ss << "| " << left << setw(length[3]) << "debt" << "|" << endl;
-  ss << right << symbol <<endl;
+  ss << "| " << left << setw(length[3]) << "debt"
+     << "|" << endl;
+  ss << right << symbol << endl;
 
-  for (const auto& student : students){
+  for (const auto& student : students) {
     ss << "| " << left << setw(length[0]) << student.name;
     ss << "| " << left << setw(length[1]) << getString(student.group);
     ss << "| " << left << setw(length[2]) << getString(student.avg);
-    ss << "| " << left << setw(length[3]) << getString(student.debt)
-    << "|" << endl;
-    ss << right << symbol <<endl;
+    ss << "| " << left << setw(length[3]) << getString(student.debt) << "|"
+       << endl;
+    ss << right << symbol << endl;
   }
-  }
+  return  ss;
+}

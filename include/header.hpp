@@ -43,7 +43,7 @@ struct Student {
   }
   static vector<Student> ParseF(const string& jsonObject);
   static vector<Student> ParseS(string jsonString);
-  static void Print(const vector<Student>& students, ostream& ss);
+  friend ostream &operator << (ostream& ss, const vector<Student>& students);
 
  private:
   string name;
