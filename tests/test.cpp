@@ -1,3 +1,5 @@
+//Copyright 2020 xaxaxaxa232@mail.ru
+
 #include <gtest/gtest.h>
 #include "header.hpp"
 

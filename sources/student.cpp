@@ -16,37 +16,35 @@ any getGroup(const json& object){
 any getAvg(const json& object){
   if (object.is_string())
     return object.get<string>();
-  else if (object.is_number_integer())
+  else if (object.is_number_integer()) {
     return object.get<int>();
-  else
+  } else
     return object.get<double>();
 }
 
 any getDebt(const json& object){
   if (object.is_null())
     return nullptr;
-  else if (object.is_string())
+  else if (object.is_string()) {
     return object.get<string>();
-  else
+  } else
     return object.get<vector<string>>();
 }
 
 string getString(any object){
   if (object.type() == typeid(nullptr_t))
     return "null";
-  else if (object.type() == typeid(string))
+  else if (object.type() == typeid(string)) {
     return any_cast<string>(object);
-  else if (object.type() == typeid(int)) {
+  } else if (object.type() == typeid(int)) {
     stringstream convector;
     convector << any_cast<int>(object);
     return convector.str();
-  }
-  else if (object.type() == typeid(double )) {
+  } else if (object.type() == typeid(double )) {
     stringstream convector;
     convector << any_cast<double>(object);
     return convector.str();
-  }
-  else {
+  } else {
     stringstream convector;
     convector << any_cast<vector<string>>(object).size() << "items";
     return convector.str();
@@ -136,7 +134,7 @@ void Student::Print(const vector<Student>& students, ostream& ss) {
   ss << "| " << left << setw(length[3]) << "debt" << "|" << endl;
   ss << right << symbol <<endl;
 
-  for (const auto &student:students){
+  for (const auto& student : students){
     ss << "| " << left << setw(length[0]) << student.name;
     ss << "| " << left << setw(length[1]) << getString(student.group);
     ss << "| " << left << setw(length[2]) << getString(student.avg);
