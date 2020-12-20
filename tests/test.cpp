@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include "header.hpp"
 
-const string inside =R"({
+const char inside[] =R"({
   "items": [
     {
       "name": "Ivanov Petr",
@@ -32,7 +32,7 @@ const string inside =R"({
     "count": 3
   }
 })";
-const string error1 =R"({
+const char error1[] =R"({
    "items": {
       "name": "Pertov Nikita",
       "group": "IU8-31",
@@ -48,7 +48,7 @@ const string error1 =R"({
   }
 })";
 
-const string error2 =R"({
+const char error2[] =R"({
   "items": [
     {
       "name": "Ivanov Petr",
@@ -78,7 +78,7 @@ const string error2 =R"({
   }
 })";
 
-const string table = R"(| name         | group | avg | debt  |
+const char table[] = R"(| name         | group | avg | debt  |
 |--------------|-------|-----|-------|
 | Ivanov Petr  | 1     | 4.25| null  |
 |--------------|-------|-----|-------|
@@ -89,14 +89,12 @@ const string table = R"(| name         | group | avg | debt  |
 )";
 
 TEST(Cout, Test1) {
-
   stringstream stest;
  Student::Print(Student::ParseS(inside), stest);
  EXPECT_EQ(stest.str(), table);
 }
 
 TEST(Cout, Test2) {
-
 ofstream jFile;
 jFile.open("testFile.json", ios::out);
 jFile << inside;
