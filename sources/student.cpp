@@ -7,34 +7,37 @@ string getName(const json& object){
 }
 
 any getGroup(const json& object){
-  if (object.is_string())
+  if (object.is_string()) {
     return object.get<string>();
-  else
+  } else {
     return object.get<int>();
+  }
 }
 
 any getAvg(const json& object){
-  if (object.is_string())
+  if (object.is_string()) {
     return object.get<string>();
-  else if (object.is_number_integer()) {
+  } else if (object.is_number_integer()) {
     return object.get<int>();
-  } else
+  } else {
     return object.get<double>();
+  }
 }
 
 any getDebt(const json& object){
-  if (object.is_null())
+  if (object.is_null()) {
     return nullptr;
-  else if (object.is_string()) {
+  } else if (object.is_string()) {
     return object.get<string>();
-  } else
+  } else {
     return object.get<vector<string>>();
+  }
 }
 
 string getString(any object){
-  if (object.type() == typeid(nullptr_t))
+  if (object.type() == typeid(nullptr_t)) {
     return "null";
-  else if (object.type() == typeid(string)) {
+  } else if (object.type() == typeid(string)) {
     return any_cast<string>(object);
   } else if (object.type() == typeid(int)) {
     stringstream convector;
@@ -106,7 +109,7 @@ vector<Student> Student::ParseS(string jsonString){
 }
 
 void Student::Print(const vector<Student>& students, ostream& ss) {
-  vector<size_t>length (4, 0);
+  vector<size_t>length(4, 0);
 
   for (const auto& student : students){
     if (student.name.length() > length[0])
