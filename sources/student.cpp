@@ -108,7 +108,7 @@ vector<Student> Student::ParseS(string jsonString){
   return vectorStud;
 }
 
-ostream &operator << (ostream& ss, const vector<Student>& students) {
+ostream & operator << (ostream& ss, const vector<Student>& students) {
   vector<size_t> length(4, 0);
 
   for (const auto& student : students) {
