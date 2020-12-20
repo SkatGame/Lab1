@@ -36,17 +36,20 @@ string getString(any object){
     return "null";
   else if (object.type() == typeid(string))
     return any_cast<string>(object);
-  else if (object.type() == typeid(int)){
+  else if (object.type() == typeid(int))
+  {
     stringstream convector;
     convector << any_cast<int>(object);
     return convector.str();
   }
-  else if (object.type() == typeid(double )){
+  else if (object.type() == typeid(double ))
+  {
     stringstream convector;
     convector << any_cast<double>(object);
     return convector.str();
   }
-  else {
+  else
+  {
     stringstream convector;
     convector << any_cast<vector<string>>(object).size() << "items";
     return convector.str();
@@ -54,7 +57,6 @@ string getString(any object){
 }
 
 vector<Student> Student::ParseF(const string& jsonObject){
-
   ifstream  fileJson(jsonObject);
 
   if (!fileJson){
@@ -75,7 +77,6 @@ vector<Student> Student::ParseF(const string& jsonObject){
   vector<Student> vectorStud;
 
   for (const auto& student : youFile["items"]){
-
     string name_ = getName(student["name"]);
     any group_ = getGroup(student["group"]);
     any avg_ = getAvg(student["avg"]);
@@ -99,7 +100,6 @@ vector<Student> Student::ParseS(string jsonString){
   vector<Student> vectorStud;
 
   for (const auto& student : youString["items"]){
-
     string name_ = getName(student["name"]);
     any group_ = getGroup(student["group"]);
     any avg_ = getAvg(student["avg"]);
